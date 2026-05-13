@@ -34,37 +34,18 @@
   .container { max-width: 1280px; margin: 0 auto; }
 
   /* ==== Scroll Reveal Animations ==== */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(36px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform;
-  }
+  .fade-up { opacity: 0; transform: translateY(36px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform; }
   .fade-up.reveal { opacity: 1; transform: translateY(0); }
-
-  .fade-left {
-    opacity: 0;
-    transform: translateX(-30px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
-  }
+  .fade-left { opacity: 0; transform: translateX(-30px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s; }
   .fade-left.reveal { opacity: 1; transform: translateX(0); }
-
-  .fade-right {
-    opacity: 0;
-    transform: translateX(30px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
-  }
+  .fade-right { opacity: 0; transform: translateX(30px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s; }
   .fade-right.reveal { opacity: 1; transform: translateX(0); }
 
-  /* Table row stagger */
-  tbody tr {
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
+  tbody tr { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
   tbody.reveal tr { opacity: 1; transform: translateY(0); }
   tbody.reveal tr:nth-child(1) { transition-delay: 0.05s; }
   tbody.reveal tr:nth-child(2) { transition-delay: 0.12s; }
@@ -73,35 +54,22 @@
   tbody.reveal tr:nth-child(5) { transition-delay: 0.33s; }
   tbody.reveal tr:nth-child(6) { transition-delay: 0.4s; }
 
-  /* Observation card stagger */
-  .obs-list .obs {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
+  .obs-list .obs { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .obs-list.reveal .obs:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
   .obs-list.reveal .obs:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.22s; }
   .obs-list.reveal .obs:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.34s; }
   .obs-list.reveal .obs:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.46s; }
 
-  /* Glow pulse for conclusion when revealed */
-  .conclusion {
-    transition: box-shadow 0.8s ease;
-  }
-  .conclusion.reveal {
-    animation: pulseGlow 2.4s ease-out 0.3s 1;
-  }
+  .conclusion { transition: box-shadow 0.8s ease; }
+  .conclusion.reveal { animation: pulseGlow 2.4s ease-out 0.3s 1; }
   @keyframes pulseGlow {
     0% { box-shadow: 0 0 20px rgba(52, 211, 153, 0.15); }
     50% { box-shadow: 0 0 36px rgba(52, 211, 153, 0.5); }
     100% { box-shadow: 0 0 20px rgba(52, 211, 153, 0.15); }
   }
 
-  /* Number count-up subtle highlight on reveal */
   .delta-row .value { transition: text-shadow 0.6s ease; }
-  .delta-wrap.reveal .value {
-    animation: numberPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
+  .delta-wrap.reveal .value { animation: numberPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
   @keyframes numberPop {
     0% { transform: scale(0.85); opacity: 0.3; }
     60% { transform: scale(1.15); opacity: 1; }
@@ -112,14 +80,10 @@
   /* Header */
   header { text-align: center; margin-bottom: 40px; }
   header h1 {
-    font-size: 38px;
-    font-weight: 800;
+    font-size: 38px; font-weight: 800;
     background: linear-gradient(135deg, #60a5fa, #a78bfa, #34d399);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 12px;
-    letter-spacing: -0.5px;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 12px; letter-spacing: -0.5px;
     animation: titleGlow 4s ease-in-out infinite alternate;
   }
   @keyframes titleGlow {
@@ -127,62 +91,35 @@
     to { filter: drop-shadow(0 0 18px rgba(167, 139, 250, 0.5)); }
   }
   .badges { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
-  .badge {
-    display: inline-block;
-    padding: 4px 12px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    font-size: 12px;
-    color: var(--fg-dim);
-  }
+  .badge { display: inline-block; padding: 4px 12px; background: var(--bg-card);
+    border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--fg-dim); }
   .badge b { color: var(--fg); }
   .env-link { color: var(--accent); font-size: 13px; text-decoration: none; }
   .env-link:hover { text-decoration: underline; }
 
-  /* Section */
   section {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px 32px;
-    margin-bottom: 24px;
-    box-shadow: var(--glow-blue);
-    position: relative;
-    overflow: hidden;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px 32px; margin-bottom: 24px;
+    box-shadow: var(--glow-blue); position: relative; overflow: hidden;
   }
   section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.6), transparent);
   }
   section.exp-02 { box-shadow: var(--glow-purple); }
   section.exp-02::before { background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.6), transparent); }
 
   .exp-tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: var(--accent);
-    background: rgba(96, 165, 250, 0.1);
-    padding: 4px 10px;
-    border-radius: 4px;
-    margin-bottom: 12px;
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    color: var(--accent); background: rgba(96, 165, 250, 0.1);
+    padding: 4px 10px; border-radius: 4px; margin-bottom: 12px;
   }
   .exp-02 .exp-tag { color: var(--accent-2); background: rgba(129, 140, 248, 0.1); }
   section h2 { font-size: 24px; font-weight: 700; margin-bottom: 14px; color: #f3f4f6; }
   .config {
-    display: inline-block;
-    font-size: 13px;
-    color: var(--fg-mute);
-    background: var(--bg-card-2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 8px 14px;
-    margin-bottom: 20px;
+    display: inline-block; font-size: 13px; color: var(--fg-mute);
+    background: var(--bg-card-2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 8px 14px; margin-bottom: 20px;
     font-family: 'SF Mono', Monaco, Menlo, monospace;
   }
   .config b { color: var(--accent); }
@@ -191,12 +128,8 @@
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
 
   table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    background: var(--bg-card-2);
-    border-radius: 8px;
-    overflow: hidden;
+    width: 100%; border-collapse: collapse; font-size: 14px;
+    background: var(--bg-card-2); border-radius: 8px; overflow: hidden;
   }
   thead tr { background: rgba(96, 165, 250, 0.08); }
   .exp-02 thead tr { background: rgba(129, 140, 248, 0.08); }
@@ -210,14 +143,9 @@
   .obs-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; color: var(--fg); }
   .obs-list { display: flex; flex-direction: column; gap: 10px; }
   .obs {
-    background: var(--bg-card-2);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: 6px;
-    padding: 12px 14px;
-    font-size: 14px;
-    color: var(--fg-dim);
-    line-height: 1.55;
+    background: var(--bg-card-2); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent); border-radius: 6px;
+    padding: 12px 14px; font-size: 14px; color: var(--fg-dim); line-height: 1.55;
   }
   .obs.warn { border-left-color: var(--warn); }
   .obs.good { border-left-color: var(--good); }
@@ -228,11 +156,8 @@
   .num-bad { color: var(--bad); font-weight: 700; }
 
   .delta-wrap {
-    margin-top: 18px;
-    padding: 16px 20px;
-    background: var(--bg-card-2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    margin-top: 18px; padding: 16px 20px;
+    background: var(--bg-card-2); border: 1px solid var(--border); border-radius: 8px;
   }
   .delta-title { font-size: 13px; color: var(--fg-dim); margin-bottom: 10px; font-weight: 600; }
   .delta-row {
@@ -247,11 +172,9 @@
   }
 
   .conclusion {
-    margin-top: 24px;
-    padding: 18px 22px;
+    margin-top: 24px; padding: 18px 22px;
     background: linear-gradient(135deg, rgba(52, 211, 153, 0.12), rgba(96, 165, 250, 0.08));
-    border: 1px solid rgba(52, 211, 153, 0.3);
-    border-radius: 10px;
+    border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 10px;
     box-shadow: 0 0 20px rgba(52, 211, 153, 0.15);
   }
   .conclusion-label {
@@ -260,6 +183,49 @@
   }
   .conclusion-text { font-size: 15px; color: var(--fg); line-height: 1.6; }
   .conclusion-text b { color: var(--good); }
+
+  /* ==== Chart styles ==== */
+  .chart-wrap {
+    margin-top: 22px;
+    padding: 20px 24px 16px;
+    background: var(--bg-card-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    position: relative;
+  }
+  .chart-title {
+    font-size: 13px; font-weight: 700; color: var(--fg);
+    margin-bottom: 4px; letter-spacing: 0.3px;
+  }
+  .chart-sub {
+    font-size: 11px; color: var(--fg-mute); margin-bottom: 12px;
+  }
+  .chart-svg { width: 100%; height: auto; display: block; }
+  .grid-line { stroke: rgba(255, 255, 255, 0.05); stroke-width: 1; }
+  .axis-line { stroke: rgba(255, 255, 255, 0.18); stroke-width: 1; }
+  .axis-text { fill: var(--fg-mute); font-size: 10px; font-family: 'SF Mono', monospace; }
+  .axis-label { fill: var(--fg-dim); font-size: 10px; font-weight: 600; }
+  .data-line {
+    fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 1000; stroke-dashoffset: 1000;
+    transition: stroke-dashoffset 1.6s cubic-bezier(0.65, 0, 0.35, 1);
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  .chart-wrap.reveal .data-line { stroke-dashoffset: 0; }
+  .data-point {
+    opacity: 0; transition: opacity 0.4s ease;
+    filter: drop-shadow(0 0 3px currentColor);
+  }
+  .chart-wrap.reveal .data-point { opacity: 1; transition-delay: 1.2s; }
+  .legend {
+    display: flex; justify-content: center; gap: 18px; flex-wrap: wrap;
+    margin-top: 10px; font-size: 12px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; color: var(--fg-dim); }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    box-shadow: 0 0 6px currentColor;
+  }
 
   footer { text-align: center; margin-top: 32px; font-size: 12px; color: var(--fg-mute); }
 </style>
@@ -302,17 +268,101 @@
       <div class="fade-right">
         <div class="obs-title">📍 핵심 관찰</div>
         <div class="obs-list">
-          <div class="obs warn"><b>테스트 10개</b>로 평가하면 epoch 1~4 동안 점수가 계속 <span class="num-warn">70%</span> → 1개 단위로만 점수가 바뀌어서 그 사이 변화가 안 보임</div>
+          <div class="obs warn"><b>테스트 샘플 10개</b>로 평가하면 epoch 1~4 동안 점수가 계속 <span class="num-warn">70%</span> → 1개 단위로만 점수가 바뀌어서 그 사이 변화가 안 보임</div>
           <div class="obs warn">마지막 epoch에서 <b>90%</b>로 점프한 것도 알고 보면 <b>한 문제 더 맞춘 것뿐</b> → 모델이 갑자기 좋아진 게 아님</div>
-          <div class="obs">같은 모델 epoch 5인데 <b>테스트 10개로 보면 90%</b>, <b>1000개로 보면 82.8%</b> → 측정 방법이 다르다는 이유만으로 <span class="num-bad">7.2%p 차이</span> 발생</div>
-          <div class="obs good"><b>테스트 1000개</b>는 <code style="color:var(--good)">54 → 72 → 81 → 82.5 → 82.8</code>로 부드럽게 올라감 → 진짜 학습 곡선이 보임</div>
+          <div class="obs">같은 모델 epoch 5인데 <b>테스트 샘플 10개로 보면 90%</b>, <b>1000개로 보면 82.8%</b> → 측정 방법이 다르다는 이유만으로 <span class="num-bad">7.2%p 차이</span> 발생</div>
+          <div class="obs good"><b>테스트 샘플 1000개</b>는 <code style="color:var(--good)">54 → 72 → 81 → 82.5 → 82.8</code>로 부드럽게 올라감 → 진짜 학습 곡선이 보임</div>
         </div>
+      </div>
+    </div>
+
+    <!-- Chart EXP 01 -->
+    <div class="chart-wrap">
+      <div class="chart-title">📈 학습 곡선 — 테스트 샘플 수별 정확도 변화</div>
+      <div class="chart-sub">X축: Epoch · Y축: Accuracy (%) · 같은 모델이라도 측정 방법에 따라 곡선이 달라진다</div>
+      <svg class="chart-svg" viewBox="0 0 900 320" preserveAspectRatio="xMidYMid meet">
+        <!-- Grid lines (Y) -->
+        <line class="grid-line" x1="60" y1="40"  x2="860" y2="40"/>
+        <line class="grid-line" x1="60" y1="92"  x2="860" y2="92"/>
+        <line class="grid-line" x1="60" y1="144" x2="860" y2="144"/>
+        <line class="grid-line" x1="60" y1="196" x2="860" y2="196"/>
+        <line class="grid-line" x1="60" y1="248" x2="860" y2="248"/>
+        <!-- Axes -->
+        <line class="axis-line" x1="60" y1="40" x2="60" y2="280"/>
+        <line class="axis-line" x1="60" y1="280" x2="860" y2="280"/>
+        <!-- Y labels -->
+        <text class="axis-text" x="50" y="44"  text-anchor="end">100</text>
+        <text class="axis-text" x="50" y="96"  text-anchor="end">80</text>
+        <text class="axis-text" x="50" y="148" text-anchor="end">60</text>
+        <text class="axis-text" x="50" y="200" text-anchor="end">40</text>
+        <text class="axis-text" x="50" y="252" text-anchor="end">20</text>
+        <text class="axis-text" x="50" y="284" text-anchor="end">0</text>
+        <!-- X labels -->
+        <text class="axis-text" x="60"  y="298" text-anchor="middle">0</text>
+        <text class="axis-text" x="220" y="298" text-anchor="middle">1</text>
+        <text class="axis-text" x="380" y="298" text-anchor="middle">2</text>
+        <text class="axis-text" x="540" y="298" text-anchor="middle">3</text>
+        <text class="axis-text" x="700" y="298" text-anchor="middle">4</text>
+        <text class="axis-text" x="860" y="298" text-anchor="middle">5</text>
+        <text class="axis-label" x="460" y="316" text-anchor="middle">Epoch</text>
+        <text class="axis-label" x="20" y="160" text-anchor="middle" transform="rotate(-90, 20, 160)">Accuracy (%)</text>
+
+        <!-- Test 10 (red) -->
+        <g style="color:#f87171">
+          <polyline class="data-line" stroke="#f87171"
+            points="60,280 220,98 380,98 540,98 700,98 860,46"/>
+          <circle class="data-point" fill="#f87171" cx="60"  cy="280" r="4"/>
+          <circle class="data-point" fill="#f87171" cx="220" cy="98"  r="4"/>
+          <circle class="data-point" fill="#f87171" cx="380" cy="98"  r="4"/>
+          <circle class="data-point" fill="#f87171" cx="540" cy="98"  r="4"/>
+          <circle class="data-point" fill="#f87171" cx="700" cy="98"  r="4"/>
+          <circle class="data-point" fill="#f87171" cx="860" cy="46"  r="4"/>
+        </g>
+        <!-- Test 50 (yellow) -->
+        <g style="color:#fbbf24">
+          <polyline class="data-line" stroke="#fbbf24"
+            points="60,254 220,134.4 380,77.2 540,87.6 700,61.6 860,51.2"/>
+          <circle class="data-point" fill="#fbbf24" cx="60"  cy="254"   r="4"/>
+          <circle class="data-point" fill="#fbbf24" cx="220" cy="134.4" r="4"/>
+          <circle class="data-point" fill="#fbbf24" cx="380" cy="77.2"  r="4"/>
+          <circle class="data-point" fill="#fbbf24" cx="540" cy="87.6"  r="4"/>
+          <circle class="data-point" fill="#fbbf24" cx="700" cy="61.6"  r="4"/>
+          <circle class="data-point" fill="#fbbf24" cx="860" cy="51.2"  r="4"/>
+        </g>
+        <!-- Test 200 (blue) -->
+        <g style="color:#60a5fa">
+          <polyline class="data-line" stroke="#60a5fa"
+            points="60,243.6 220,133.1 380,108.9 540,94.6 540,94.6 700,88.1 860,86.8"/>
+          <circle class="data-point" fill="#60a5fa" cx="60"  cy="243.6" r="4"/>
+          <circle class="data-point" fill="#60a5fa" cx="220" cy="133.1" r="4"/>
+          <circle class="data-point" fill="#60a5fa" cx="380" cy="108.9" r="4"/>
+          <circle class="data-point" fill="#60a5fa" cx="540" cy="94.6"  r="4"/>
+          <circle class="data-point" fill="#60a5fa" cx="700" cy="88.1"  r="4"/>
+          <circle class="data-point" fill="#60a5fa" cx="860" cy="86.8"  r="4"/>
+        </g>
+        <!-- Test 1000 (green) -->
+        <g style="color:#34d399">
+          <polyline class="data-line" stroke="#34d399"
+            points="60,257.9 220,137.34 380,87.68 540,67.62 700,82.55 860,84.72"/>
+          <circle class="data-point" fill="#34d399" cx="60"  cy="257.9"  r="4"/>
+          <circle class="data-point" fill="#34d399" cx="220" cy="139.34" r="4"/>
+          <circle class="data-point" fill="#34d399" cx="380" cy="92.28"  r="4"/>
+          <circle class="data-point" fill="#34d399" cx="540" cy="70.18"  r="4"/>
+          <circle class="data-point" fill="#34d399" cx="700" cy="85.5"   r="4"/>
+          <circle class="data-point" fill="#34d399" cx="860" cy="84.72"  r="4"/>
+        </g>
+      </svg>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#f87171;color:#f87171"></span>테스트 10</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#fbbf24;color:#fbbf24"></span>테스트 50</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#60a5fa;color:#60a5fa"></span>테스트 200</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#34d399;color:#34d399"></span>테스트 1000</div>
       </div>
     </div>
 
     <div class="conclusion fade-up">
       <div class="conclusion-label">📌 결론</div>
-      <div class="conclusion-text">실험끼리 비교하려면 <b>테스트는 최소 1,000개</b>로 해야 한다. 그보다 적으면 점수가 <b>7%p 넘게 흔들려서</b>, 모델이 좋아진 건지 그냥 운이 좋았던 건지 알 수 없다.</div>
+      <div class="conclusion-text">실험끼리 비교하려면 <b>테스트 샘플은 최소 1,000개</b>로 해야 한다. 그보다 적으면 점수가 <b>7%p 넘게 흔들려서</b>, 모델이 좋아진 건지 그냥 운이 좋았던 건지 알 수 없다.</div>
     </div>
   </section>
 
@@ -320,7 +370,7 @@
   <section class="exp-02 fade-up">
     <div class="exp-tag">EXPERIMENT 02</div>
     <h2>학습 데이터가 많아지면 정확도는 얼마나 오를까?</h2>
-    <div class="config"><b>고정</b> 테스트 1000, Conv 2 &nbsp;·&nbsp; <b>변수</b> 학습 128 / 512 / 2048</div>
+    <div class="config"><b>고정</b> 테스트 샘플 1000, Conv 2 &nbsp;·&nbsp; <b>변수</b> 학습 샘플 128 / 512 / 2048</div>
 
     <div class="grid">
       <table class="fade-left">
@@ -341,8 +391,8 @@
         <div class="obs-title">📍 핵심 관찰</div>
         <div class="obs-list">
           <div class="obs purple">데이터를 4배 늘릴 때마다 점수가 <b>거의 똑같이 <span class="num-good">+30%p</span>씩</b> 오름 → 두 배 늘렸다고 두 배 좋아지는 게 아니다</div>
-          <div class="obs warn"><b>학습 128개</b>는 epoch 5까지 학습해도 <span class="num-warn">25.7%</span>에서 멈춤 → 데이터가 부족하면 <b>오래 학습시켜도 소용없다</b></div>
-          <div class="obs good"><b>학습 2048개</b>는 1 epoch에 벌써 <span class="num-good">50%</span>, 5 epoch에 <span class="num-good">86%</span> → 데이터가 많으면 시작부터 다르다</div>
+          <div class="obs warn"><b>학습 샘플 128개</b>는 epoch 5까지 학습해도 <span class="num-warn">25.7%</span>에서 멈춤 → 데이터가 부족하면 <b>오래 학습시켜도 소용없다</b></div>
+          <div class="obs good"><b>학습 샘플 2048개</b>는 1 epoch에 벌써 <span class="num-good">50%</span>, 5 epoch에 <span class="num-good">86%</span> → 데이터가 많으면 시작부터 다르다</div>
         </div>
 
         <div class="delta-wrap">
@@ -350,6 +400,74 @@
           <div class="delta-row"><span class="change">128 → 512 (×4)</span><span class="value">+29.7 %p</span></div>
           <div class="delta-row"><span class="change">512 → 2048 (×4)</span><span class="value">+31.0 %p</span></div>
         </div>
+      </div>
+    </div>
+
+    <!-- Chart EXP 02 -->
+    <div class="chart-wrap">
+      <div class="chart-title">📈 학습 곡선 — 학습 데이터 양에 따른 정확도 변화</div>
+      <div class="chart-sub">X축: Epoch · Y축: Accuracy (%) · 데이터를 4배 늘릴 때마다 +30%p 일정하게 상승</div>
+      <svg class="chart-svg" viewBox="0 0 900 320" preserveAspectRatio="xMidYMid meet">
+        <line class="grid-line" x1="60" y1="40"  x2="860" y2="40"/>
+        <line class="grid-line" x1="60" y1="92"  x2="860" y2="92"/>
+        <line class="grid-line" x1="60" y1="144" x2="860" y2="144"/>
+        <line class="grid-line" x1="60" y1="196" x2="860" y2="196"/>
+        <line class="grid-line" x1="60" y1="248" x2="860" y2="248"/>
+        <line class="axis-line" x1="60" y1="40" x2="60" y2="280"/>
+        <line class="axis-line" x1="60" y1="280" x2="860" y2="280"/>
+        <text class="axis-text" x="50" y="44"  text-anchor="end">100</text>
+        <text class="axis-text" x="50" y="96"  text-anchor="end">80</text>
+        <text class="axis-text" x="50" y="148" text-anchor="end">60</text>
+        <text class="axis-text" x="50" y="200" text-anchor="end">40</text>
+        <text class="axis-text" x="50" y="252" text-anchor="end">20</text>
+        <text class="axis-text" x="50" y="284" text-anchor="end">0</text>
+        <text class="axis-text" x="60"  y="298" text-anchor="middle">0</text>
+        <text class="axis-text" x="220" y="298" text-anchor="middle">1</text>
+        <text class="axis-text" x="380" y="298" text-anchor="middle">2</text>
+        <text class="axis-text" x="540" y="298" text-anchor="middle">3</text>
+        <text class="axis-text" x="700" y="298" text-anchor="middle">4</text>
+        <text class="axis-text" x="860" y="298" text-anchor="middle">5</text>
+        <text class="axis-label" x="460" y="316" text-anchor="middle">Epoch</text>
+        <text class="axis-label" x="20" y="160" text-anchor="middle" transform="rotate(-90, 20, 160)">Accuracy (%)</text>
+
+        <!-- Train 128 (red) -->
+        <g style="color:#f87171">
+          <polyline class="data-line" stroke="#f87171"
+            points="60,241.52 220,240.22 380,243.86 540,231.64 700,217.34 860,213.18"/>
+          <circle class="data-point" fill="#f87171" cx="60"  cy="241.52" r="4"/>
+          <circle class="data-point" fill="#f87171" cx="220" cy="240.22" r="4"/>
+          <circle class="data-point" fill="#f87171" cx="380" cy="243.86" r="4"/>
+          <circle class="data-point" fill="#f87171" cx="540" cy="231.64" r="4"/>
+          <circle class="data-point" fill="#f87171" cx="700" cy="217.34" r="4"/>
+          <circle class="data-point" fill="#f87171" cx="860" cy="213.18" r="4"/>
+        </g>
+        <!-- Train 512 (purple) -->
+        <g style="color:#a78bfa">
+          <polyline class="data-line" stroke="#a78bfa"
+            points="60,237.36 220,213.7 380,197.06 540,175.48 700,151.14 860,136.06"/>
+          <circle class="data-point" fill="#a78bfa" cx="60"  cy="237.36" r="4"/>
+          <circle class="data-point" fill="#a78bfa" cx="220" cy="213.7"  r="4"/>
+          <circle class="data-point" fill="#a78bfa" cx="380" cy="197.06" r="4"/>
+          <circle class="data-point" fill="#a78bfa" cx="540" cy="175.48" r="4"/>
+          <circle class="data-point" fill="#a78bfa" cx="700" cy="151.14" r="4"/>
+          <circle class="data-point" fill="#a78bfa" cx="860" cy="136.06" r="4"/>
+        </g>
+        <!-- Train 2048 (green) -->
+        <g style="color:#34d399">
+          <polyline class="data-line" stroke="#34d399"
+            points="60,255.3 220,149.04 380,89.6 540,69.34 700,63.1 860,55.5"/>
+          <circle class="data-point" fill="#34d399" cx="60"  cy="255.3" r="4"/>
+          <circle class="data-point" fill="#34d399" cx="220" cy="149.04" r="4"/>
+          <circle class="data-point" fill="#34d399" cx="380" cy="89.6"  r="4"/>
+          <circle class="data-point" fill="#34d399" cx="540" cy="69.34" r="4"/>
+          <circle class="data-point" fill="#34d399" cx="700" cy="63.1"  r="4"/>
+          <circle class="data-point" fill="#34d399" cx="860" cy="55.5"  r="4"/>
+        </g>
+      </svg>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#f87171;color:#f87171"></span>학습 샘플 128</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#a78bfa;color:#a78bfa"></span>학습 샘플 512</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#34d399;color:#34d399"></span>학습 샘플2048</div>
       </div>
     </div>
 
@@ -364,11 +482,9 @@
 </div>
 
 <script>
-  // 스크롤할 때 요소가 화면에 들어오면 부드럽게 나타나게 함
   const targets = document.querySelectorAll(
-    '.fade-up, .fade-left, .fade-right, tbody, .obs-list, .delta-wrap, .conclusion'
+    '.fade-up, .fade-left, .fade-right, tbody, .obs-list, .delta-wrap, .conclusion, .chart-wrap'
   );
-
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -377,7 +493,6 @@
       }
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-
   targets.forEach(el => io.observe(el));
 </script>
 </body>
