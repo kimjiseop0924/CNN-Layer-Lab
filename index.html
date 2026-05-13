@@ -19,8 +19,6 @@
     --warn: #fbbf24;
     --bad: #f87171;
     --glow-blue: 0 0 24px rgba(96, 165, 250, 0.35);
-    --glow-green: 0 0 24px rgba(52, 211, 153, 0.35);
-    --glow-yellow: 0 0 24px rgba(251, 191, 36, 0.35);
     --glow-purple: 0 0 24px rgba(129, 140, 248, 0.4);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,8 +29,85 @@
     min-height: 100vh;
     padding: 32px 24px 48px;
     line-height: 1.6;
+    overflow-x: hidden;
   }
   .container { max-width: 1280px; margin: 0 auto; }
+
+  /* ==== Scroll Reveal Animations ==== */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .fade-up.reveal { opacity: 1; transform: translateY(0); }
+
+  .fade-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+  }
+  .fade-left.reveal { opacity: 1; transform: translateX(0); }
+
+  .fade-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s,
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  }
+  .fade-right.reveal { opacity: 1; transform: translateX(0); }
+
+  /* Table row stagger */
+  tbody tr {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  tbody.reveal tr { opacity: 1; transform: translateY(0); }
+  tbody.reveal tr:nth-child(1) { transition-delay: 0.05s; }
+  tbody.reveal tr:nth-child(2) { transition-delay: 0.12s; }
+  tbody.reveal tr:nth-child(3) { transition-delay: 0.19s; }
+  tbody.reveal tr:nth-child(4) { transition-delay: 0.26s; }
+  tbody.reveal tr:nth-child(5) { transition-delay: 0.33s; }
+  tbody.reveal tr:nth-child(6) { transition-delay: 0.4s; }
+
+  /* Observation card stagger */
+  .obs-list .obs {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .obs-list.reveal .obs:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+  .obs-list.reveal .obs:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.22s; }
+  .obs-list.reveal .obs:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.34s; }
+  .obs-list.reveal .obs:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.46s; }
+
+  /* Glow pulse for conclusion when revealed */
+  .conclusion {
+    transition: box-shadow 0.8s ease;
+  }
+  .conclusion.reveal {
+    animation: pulseGlow 2.4s ease-out 0.3s 1;
+  }
+  @keyframes pulseGlow {
+    0% { box-shadow: 0 0 20px rgba(52, 211, 153, 0.15); }
+    50% { box-shadow: 0 0 36px rgba(52, 211, 153, 0.5); }
+    100% { box-shadow: 0 0 20px rgba(52, 211, 153, 0.15); }
+  }
+
+  /* Number count-up subtle highlight on reveal */
+  .delta-row .value { transition: text-shadow 0.6s ease; }
+  .delta-wrap.reveal .value {
+    animation: numberPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes numberPop {
+    0% { transform: scale(0.85); opacity: 0.3; }
+    60% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+  .delta-wrap .value { display: inline-block; }
 
   /* Header */
   header { text-align: center; margin-bottom: 40px; }
@@ -45,6 +120,11 @@
     -webkit-text-fill-color: transparent;
     margin-bottom: 12px;
     letter-spacing: -0.5px;
+    animation: titleGlow 4s ease-in-out infinite alternate;
+  }
+  @keyframes titleGlow {
+    from { filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.3)); }
+    to { filter: drop-shadow(0 0 18px rgba(167, 139, 250, 0.5)); }
   }
   .badges { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
   .badge {
@@ -57,11 +137,7 @@
     color: var(--fg-dim);
   }
   .badge b { color: var(--fg); }
-  .env-link {
-    color: var(--accent);
-    font-size: 13px;
-    text-decoration: none;
-  }
+  .env-link { color: var(--accent); font-size: 13px; text-decoration: none; }
   .env-link:hover { text-decoration: underline; }
 
   /* Section */
@@ -97,17 +173,7 @@
     margin-bottom: 12px;
   }
   .exp-02 .exp-tag { color: var(--accent-2); background: rgba(129, 140, 248, 0.1); }
-  section h2 {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 14px;
-    color: #f3f4f6;
-  }
-  .intro {
-    color: var(--fg-dim);
-    margin-bottom: 20px;
-    font-size: 15px;
-  }
+  section h2 { font-size: 24px; font-weight: 700; margin-bottom: 14px; color: #f3f4f6; }
   .config {
     display: inline-block;
     font-size: 13px;
@@ -122,15 +188,8 @@
   .config b { color: var(--accent); }
   .exp-02 .config b { color: var(--accent-2); }
 
-  /* Grid layout */
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    align-items: start;
-  }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
 
-  /* Table */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -141,27 +200,14 @@
   }
   thead tr { background: rgba(96, 165, 250, 0.08); }
   .exp-02 thead tr { background: rgba(129, 140, 248, 0.08); }
-  th, td {
-    padding: 10px 14px;
-    text-align: right;
-    border-bottom: 1px solid var(--border);
-  }
+  th, td { padding: 10px 14px; text-align: right; border-bottom: 1px solid var(--border); }
   th:first-child, td:first-child { text-align: center; color: var(--fg-mute); }
   th { font-weight: 600; color: var(--fg); font-size: 13px; }
   tbody tr:last-child { background: rgba(52, 211, 153, 0.06); }
   tbody tr:last-child td { font-weight: 700; color: var(--good); border-bottom: none; }
   tbody tr:last-child td:first-child { color: var(--good); }
 
-  /* Observation cards */
-  .obs-title {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--fg);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+  .obs-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; color: var(--fg); }
   .obs-list { display: flex; flex-direction: column; gap: 10px; }
   .obs {
     background: var(--bg-card-2);
@@ -181,7 +227,6 @@
   .num-good { color: var(--good); font-weight: 700; }
   .num-bad { color: var(--bad); font-weight: 700; }
 
-  /* Sub table (delta) */
   .delta-wrap {
     margin-top: 18px;
     padding: 16px 20px;
@@ -189,30 +234,18 @@
     border: 1px solid var(--border);
     border-radius: 8px;
   }
-  .delta-title {
-    font-size: 13px;
-    color: var(--fg-dim);
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
+  .delta-title { font-size: 13px; color: var(--fg-dim); margin-bottom: 10px; font-weight: 600; }
   .delta-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px dashed var(--border);
-    font-size: 14px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 14px;
   }
   .delta-row:last-child { border-bottom: none; }
   .delta-row .change { color: var(--fg-dim); }
   .delta-row .value {
-    color: var(--good);
-    font-weight: 700;
-    font-size: 16px;
+    color: var(--good); font-weight: 700; font-size: 16px;
     text-shadow: 0 0 12px rgba(52, 211, 153, 0.5);
   }
 
-  /* Conclusion */
   .conclusion {
     margin-top: 24px;
     padding: 18px 22px;
@@ -222,68 +255,19 @@
     box-shadow: 0 0 20px rgba(52, 211, 153, 0.15);
   }
   .conclusion-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--good);
-    margin-bottom: 6px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: var(--good); margin-bottom: 6px;
   }
-  .conclusion-text {
-    font-size: 15px;
-    color: var(--fg);
-    line-height: 1.6;
-  }
+  .conclusion-text { font-size: 15px; color: var(--fg); line-height: 1.6; }
   .conclusion-text b { color: var(--good); }
 
-  /* Final summary */
-  .final {
-    background: linear-gradient(135deg, rgba(96, 165, 250, 0.08), rgba(167, 139, 250, 0.08));
-    border: 1px solid rgba(167, 139, 250, 0.3);
-    border-radius: 16px;
-    padding: 28px 32px;
-    box-shadow: 0 0 32px rgba(167, 139, 250, 0.2);
-  }
-  .final h2 {
-    font-size: 22px;
-    margin-bottom: 18px;
-    text-align: center;
-    background: linear-gradient(135deg, #60a5fa, #a78bfa);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .summary-grid {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 14px 20px;
-    align-items: center;
-  }
-  .summary-key {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--accent);
-    text-align: center;
-    padding: 10px;
-    background: rgba(96, 165, 250, 0.08);
-    border-radius: 6px;
-  }
-  .summary-key.purple { color: var(--accent-2); background: rgba(167, 139, 250, 0.08); }
-  .summary-val { font-size: 14px; color: var(--fg); line-height: 1.6; }
-  .summary-val b { color: var(--warn); }
-  .summary-val .hl { color: var(--good); font-weight: 700; }
-
-  footer {
-    text-align: center;
-    margin-top: 32px;
-    font-size: 12px;
-    color: var(--fg-mute);
-  }
+  footer { text-align: center; margin-top: 32px; font-size: 12px; color: var(--fg-mute); }
 </style>
 </head>
 <body>
 <div class="container">
 
-  <header>
+  <header class="fade-up">
     <h1>🔬 CNN Layer Lab · 실험 보고서</h1>
     <div class="badges">
       <span class="badge">Dataset · <b>MNIST 원본</b></span>
@@ -295,15 +279,15 @@
   </header>
 
   <!-- EXP 01 -->
-  <section class="exp-01">
+  <section class="exp-01 fade-up">
     <div class="exp-tag">EXPERIMENT 01</div>
     <h2>테스트 샘플 수를 바꾸면 정확도가 얼마나 달라질까?</h2>
     <div class="config"><b>고정</b> 학습 2048, Conv 2 &nbsp;·&nbsp; <b>변수</b> 테스트 10 / 50 / 200 / 1000</div>
 
     <div class="grid">
-      <table>
+      <table class="fade-left">
         <thead>
-          <tr><th>Epoch</th><th>테스트 셈플 10</th><th>Test 50</th><th>테스트 셈플 200</th><th>테스트 셈플 1000</th></tr>
+          <tr><th>Epoch</th><th>테스트 10</th><th>테스트 50</th><th>테스트 200</th><th>테스트 1000</th></tr>
         </thead>
         <tbody>
           <tr><td>0</td><td>0.0%</td><td>10.0%</td><td>14.0%</td><td>8.5%</td></tr>
@@ -315,33 +299,33 @@
         </tbody>
       </table>
 
-      <div>
+      <div class="fade-right">
         <div class="obs-title">📍 핵심 관찰</div>
         <div class="obs-list">
-          <div class="obs warn"><b>테스트 샘플</b>은 epoch 1~4 동안 정확도가 <span class="num-warn">70%</span>에 4번 고정 → 측정 단위가 10%p라 그 사이 변화가 드러나지 않음</div>
-          <div class="obs warn"><b>테스트 샘플 10의 마지막 90%</b>는 10개 중 9개 = <b>단 1개 차이</b>로 만든 점프. 실력 향상이 아닌 측정 단위의 착시</div>
-          <div class="obs"><b>같은 모델 epoch 5</b>인데 테스트 샘플 10 → <span class="num-warn">90.0%</span> vs 테스트 샘플 1000 → <span class="num-good">82.8%</span> = <b><span class="num-bad">7.2%p 측정 왜곡</span></b> 발생</div>
-          <div class="obs good"><b>테스트 샘플 1000</b>은 <code style="color:var(--good)">54.1 → 72.2 → 80.7 → 82.5 → 82.8</code> 매끄럽게 수렴 → 신뢰할 수 있는 학습 곡선</div>
+          <div class="obs warn"><b>테스트 10개</b>로 평가하면 epoch 1~4 동안 점수가 계속 <span class="num-warn">70%</span> → 1개 단위로만 점수가 바뀌어서 그 사이 변화가 안 보임</div>
+          <div class="obs warn">마지막 epoch에서 <b>90%</b>로 점프한 것도 알고 보면 <b>한 문제 더 맞춘 것뿐</b> → 모델이 갑자기 좋아진 게 아님</div>
+          <div class="obs">같은 모델 epoch 5인데 <b>테스트 10개로 보면 90%</b>, <b>1000개로 보면 82.8%</b> → 측정 방법이 다르다는 이유만으로 <span class="num-bad">7.2%p 차이</span> 발생</div>
+          <div class="obs good"><b>테스트 1000개</b>는 <code style="color:var(--good)">54 → 72 → 81 → 82.5 → 82.8</code>로 부드럽게 올라감 → 진짜 학습 곡선이 보임</div>
         </div>
       </div>
     </div>
 
-    <div class="conclusion">
+    <div class="conclusion fade-up">
       <div class="conclusion-label">📌 결론</div>
-      <div class="conclusion-text">실험 간 비교는 <b>테스트 샘플 ≥ 1,000</b>으로 측정해야 한다. 그보다 적으면 결과가 <b>7%p 이상 왜곡</b>되어 모델 차이인지 측정 노이즈인지 구분이 불가능하다.</div>
+      <div class="conclusion-text">실험끼리 비교하려면 <b>테스트는 최소 1,000개</b>로 해야 한다. 그보다 적으면 점수가 <b>7%p 넘게 흔들려서</b>, 모델이 좋아진 건지 그냥 운이 좋았던 건지 알 수 없다.</div>
     </div>
   </section>
 
   <!-- EXP 02 -->
-  <section class="exp-02">
+  <section class="exp-02 fade-up">
     <div class="exp-tag">EXPERIMENT 02</div>
     <h2>학습 데이터가 많아지면 정확도는 얼마나 오를까?</h2>
     <div class="config"><b>고정</b> 테스트 1000, Conv 2 &nbsp;·&nbsp; <b>변수</b> 학습 128 / 512 / 2048</div>
 
     <div class="grid">
-      <table>
+      <table class="fade-left">
         <thead>
-          <tr><th>Epoch</th><th>학습 샘플 128</th><th>학습 샘플 512</th><th>학습 샘플 2048</th></tr>
+          <tr><th>Epoch</th><th>학습 128</th><th>학습 512</th><th>학습 2048</th></tr>
         </thead>
         <tbody>
           <tr><td>0</td><td>14.8%</td><td>16.4%</td><td>9.5%</td></tr>
@@ -353,31 +337,48 @@
         </tbody>
       </table>
 
-      <div>
+      <div class="fade-right">
         <div class="obs-title">📍 핵심 관찰</div>
         <div class="obs-list">
-          <div class="obs purple">두 번의 4배 증가가 <b>거의 동일한 폭(<span class="num-good">+30%p</span>)</b>으로 점수를 올림 → 정확도는 <b>학습 샘플에 선형 비례</b></div>
-          <div class="obs warn"><b>학습 샘플 128</b>은 epoch를 다 써도 <span class="num-warn">25.7%</span>에서 정체 → 데이터 부족은 epoch로 메꿀 수 없음</div>
-          <div class="obs good"><b>학습 샘플 2048</b>은 단 1 epoch에 <span class="num-good">50.4%</span>, 5 epoch에 <span class="num-good">86.4%</span> 도달 → 같은 시간·같은 모델이지만 출발점부터 다름</div>
+          <div class="obs purple">데이터를 4배 늘릴 때마다 점수가 <b>거의 똑같이 <span class="num-good">+30%p</span>씩</b> 오름 → 두 배 늘렸다고 두 배 좋아지는 게 아니다</div>
+          <div class="obs warn"><b>학습 128개</b>는 끝까지 학습해도 <span class="num-warn">25.7%</span>에서 멈춤 → 데이터가 부족하면 <b>오래 학습시켜도 소용없다</b></div>
+          <div class="obs good"><b>학습 2048개</b>는 1 epoch에 벌써 <span class="num-good">50%</span>, 5 epoch에 <span class="num-good">86%</span> → 데이터가 많으면 시작부터 다르다</div>
         </div>
 
         <div class="delta-wrap">
-          <div class="delta-title">데이터 4배당 정확도 변화 (Epoch 5)</div>
+          <div class="delta-title">데이터를 4배 늘렸을 때 점수 변화 (Epoch 5 기준)</div>
           <div class="delta-row"><span class="change">128 → 512 (×4)</span><span class="value">+29.7 %p</span></div>
           <div class="delta-row"><span class="change">512 → 2048 (×4)</span><span class="value">+31.0 %p</span></div>
         </div>
       </div>
     </div>
 
-    <div class="conclusion">
+    <div class="conclusion fade-up">
       <div class="conclusion-label">📌 결론</div>
-      <div class="conclusion-text"><b>데이터 4배 ≒ 정확도 +30%p</b>. 다음 +30%p를 얻으려면 또 4배가 필요하다. 성능 향상의 가장 강력한 수단은 <b>데이터 확보</b>이며, 데이터가 적을 땐 epoch를 늘려도 한계가 명확하다.</div>
+      <div class="conclusion-text"><b>데이터 4배 ≒ 점수 +30%p</b>. 그런데 다음 30%p를 또 얻으려면 <b>또 4배가 필요</b>하다. 즉, 점수를 올리는 가장 확실한 방법은 <b>데이터를 많이 모으는 것</b>이고, 데이터가 적을 땐 오래 학습시켜도 한계가 있다.</div>
     </div>
   </section>
-  <footer>
-    🔬 Experiments performed on CNN Layer Lab · 2026-05-13
-  </footer>
+
+  <footer class="fade-up">🔬 Experiments performed on CNN Layer Lab · 2026-05-13</footer>
 
 </div>
+
+<script>
+  // 스크롤할 때 요소가 화면에 들어오면 부드럽게 나타나게 함
+  const targets = document.querySelectorAll(
+    '.fade-up, .fade-left, .fade-right, tbody, .obs-list, .delta-wrap, .conclusion'
+  );
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+  targets.forEach(el => io.observe(el));
+</script>
 </body>
 </html>
